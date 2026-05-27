@@ -1,0 +1,13 @@
+[package]
+name = "holonomy-harmony"
+version = "0.1.0"
+edition = "2021"
+description = "Holonomy groups, parallel transport, fiber bundles, and algebraic topology applied to musical traditions"
+license = "MIT"
+keywords = ["music", "topology", "holonomy", "harmony", "algebra"]
+categories = ["algorithms", "mathematics", "science"]
+repository = "https://github.com/SuperInstance/holonomy-harmony-rs"
+
+[dependencies]
+serde = { version = "1.0", features = ["derive"] }
+thiserror = "1.0"
