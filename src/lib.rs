@@ -1,6 +1,6 @@
 //! Holonomy in musical harmony — connection matrices, curvature, tonal fiber bundles.
 
-use std::f64::consts::PI;
+#![allow(clippy::needless_range_loop)]
 
 /// A tonal connection matrix (parallel transport between keys).
 #[derive(Debug, Clone)]
@@ -10,13 +10,17 @@ pub struct ConnectionMatrix {
 }
 
 impl Default for ConnectionMatrix {
-    fn default() -> Self { Self::identity() }
+    fn default() -> Self {
+        Self::identity()
+    }
 }
 
 impl ConnectionMatrix {
     pub fn identity() -> Self {
         let mut m = [[0.0; 12]; 12];
-        for i in 0..12 { m[i][i] = 1.0; }
+        for i in 0..12 {
+            m[i][i] = 1.0;
+        }
         Self { matrix: m }
     }
 
@@ -41,8 +45,10 @@ impl ConnectionMatrix {
 
     /// Compute holonomy: transport around a closed loop.
     pub fn holonomy(&self, path: &[u8], vector: &[f64; 12]) -> [f64; 12] {
-        if path.len() < 2 { return *vector; }
-        let mut current = vector.clone();
+        if path.len() < 2 {
+            return *vector;
+        }
+        let mut current = *vector;
         for i in 0..path.len() - 1 {
             current = self.transport(path[i], path[i + 1], &current);
         }
@@ -54,8 +60,12 @@ impl ConnectionMatrix {
     /// Holonomy magnitude (how much the vector changes).
     pub fn holonomy_magnitude(&self, path: &[u8], vector: &[f64; 12]) -> f64 {
         let transported = self.holonomy(path, vector);
-        vector.iter().zip(transported.iter())
-            .map(|(a, b)| (a - b).powi(2)).sum::<f64>().sqrt()
+        vector
+            .iter()
+            .zip(transported.iter())
+            .map(|(a, b)| (a - b).powi(2))
+            .sum::<f64>()
+            .sqrt()
     }
 }
 
@@ -95,7 +105,9 @@ pub fn major_gravity_weights() -> [f64; 12] {
 
 /// Compute the curvature of a chord progression.
 pub fn progression_curvature(chords: &[u8]) -> f64 {
-    if chords.len() < 3 { return 0.0; }
+    if chords.len() < 3 {
+        return 0.0;
+    }
     let mut total = 0.0;
     for i in 0..chords.len() - 2 {
         let d1 = harmonic_distance(chords[i], chords[i + 1]);
