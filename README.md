@@ -25,3 +25,5 @@ println!("Average curvature: {}", flow.avg_curvature());
 
 ## License
 MIT
+
+Part of the [SuperInstance OpenConstruct](https://github.com/SuperInstance/OpenConstruct) ecosystem.
