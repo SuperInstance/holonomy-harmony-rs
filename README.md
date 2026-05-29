@@ -1,29 +1,17 @@
 # holonomy-harmony-rs
 
-A pure Rust port of [holonomy-harmony](https://github.com/SuperInstance/holonomy-harmony) — holonomy groups, parallel transport, fiber bundles, and algebraic topology applied to musical traditions.
+**Holonomy groups in harmonic analysis** — Rust implementation of holonomy computation for musical harmony structures.
 
-## Features
+## What This Gives You
 
-- **Tonal graph** — Directed weighted graph over pitch classes with transition classification
-- **Simplicial complexes** — For representing harmonic spaces
-- **Betti numbers** — Topological invariants (connected components, loops)
-- **Curvature flow** — Forman-Ricci-like curvature on tonal graphs
-- **Holonomy computation** — Net winding around the circle of fifths
-- **Progression classification** — Diatonic, chromatic mediant, chromatic
+- **Holonomy computation** — calculate holonomy groups for harmonic progressions
+- **Rust performance** — native speed for real-time musical analysis
+- **Connection to symplectic geometry** — holonomy as a measure of harmonic curvature
 
-## Usage
+## How It Fits
 
-```rust
-use holonomy_harmony::{TonalGraph, SimplicialComplex, BettiNumbers, CurvatureFlow};
-
-let mut g = TonalGraph::new();
-g.build_from_progression(&[0, 5, 7, 0]); // I-IV-V-I
-
-let flow = CurvatureFlow::compute(&[0, 5, 7, 0]);
-println!("Average curvature: {}", flow.avg_curvature());
-```
+Rust implementation of the holonomy analysis that `symplectic-music` explores theoretically. Part of the SuperInstance music-mathematics research alongside `counterpoint-engine` and `betti-music-computation`.
 
 ## License
-MIT
 
-Part of the [SuperInstance OpenConstruct](https://github.com/SuperInstance/OpenConstruct) ecosystem.
+MIT
